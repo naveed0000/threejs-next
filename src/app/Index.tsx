@@ -5,37 +5,24 @@ import React from "react";
 import { Robet } from "./Robet";
 import { OrbitControls, Sky, Environment, Sparkles } from "@react-three/drei";
 import { Robot } from "./Robot";
+import Face from "./Face";
 
 export default function Index() {
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-gradient-to-b from-orange-400 via-red-500 to-purple-900">
+    <div className="w-full h-screen flex justify-center items-center bg-gray-500">
       <Canvas camera={{ position: [0, 1, 5], fov: 50 }} shadows dpr={[1, 2]}>
         {/* Deep Sunset Background */}
-        
+
         {/* Dramatic Sunset Sky */}
-        <Sky 
-          distance={450000}
-          sunPosition={[0, 0.5, -1]}
-          inclination={0}
-          azimuth={0.25}
-          mieCoefficient={0.005}
-          mieDirectionalG={0.9}
-          rayleigh={2}
-          turbidity={20}
-        />
-        
-        {/* Sunset Environment with warm tones */}
-        <Environment 
-          preset="sunset"
-        />
-        
+
+        <Environment preset="sunset" />
+
         {/* Warm Ambient Lighting */}
-        
+
         {/* Main Sunset Light */}
-        <directionalLight 
-          position={[10, 10, 5]} 
-          intensity={1.2} 
-          color="#ff8c00"
+        <directionalLight
+          position={[10, 10, 5]}
+          intensity={1.2}
           castShadow
           shadow-mapSize={2048}
           shadow-camera-far={50}
@@ -44,44 +31,19 @@ export default function Index() {
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-        
+
         {/* Fill Light */}
-        <directionalLight 
-          position={[-5, 5, -5]} 
-          intensity={0.6} 
-          color="#ffb74d"
-        />
-        
+
         {/* Rim Light */}
-        <directionalLight 
-          position={[0, 5, -10]} 
-          intensity={0.8} 
-          color="#ff5252"
-        />
 
         {/* Desert-like Ground */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
-          <planeGeometry args={[30, 30]} />
-          <meshStandardMaterial 
-            color="#cd853f" 
-            roughness={0.9} 
-            metalness={0.1}
-          />
-        </mesh>
-
-        {/* Optional: Add some sparkles for magical effect */}
-        <Sparkles 
-          count={100} 
-          scale={10} 
-          size={2} 
-          speed={0.3} 
-          color="#ffa500"
-        />
 
         {/* Robot */}
         {/* <Robet /> */}
-        <Robot />
-        
+        {/* <Robot /> */}
+          <ambientLight intensity={0.5} />
+          <Face />
+
         {/* Controls */}
         <OrbitControls
           enableZoom={true}
@@ -100,8 +62,6 @@ export default function Index() {
         />
 
         {/* Additional atmospheric lights */}
-        <pointLight position={[0, 3, 0]} intensity={0.3} color="#ff6b6b" />
-        <pointLight position={[5, 2, 5]} intensity={0.2} color="#ffd93d" />
       </Canvas>
     </div>
   );
